@@ -20,6 +20,7 @@ class BookAdmin(admin.ModelAdmin):
     list_editable = ["pages_count", "edition_year"]
     prepopulated_fields = {'slug': ("title",)}
 
+    #нужно для корректного отображения в админке поля ManyToManyField
     def get_genres(self, obj):
         return ", ".join([genre.name for genre in obj.genres.all()])
     get_genres.short_description = "Жанры"
@@ -27,3 +28,4 @@ class BookAdmin(admin.ModelAdmin):
     def get_authors(self, obj):
         return ", ".join([author.name for author in obj.authors.all()])
     get_authors.short_description = "Авторы"
+
